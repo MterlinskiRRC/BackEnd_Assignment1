@@ -16,18 +16,16 @@ export function calculatePortfolioPerformance(
       ? (profitOrLoss / initialInvestment) * 100
       : 0;
 
-  const performanceSummary =
-    percentageChange > 30
-      ? "Excellent performance! Your investments are doing great."
-      : percentageChange >= 10
-      ? "Solid gain. Keep monitoring your investments."
-      : percentageChange > 0
-      ? "Modest gain. Your portfolio is growing slowly."
-      : percentageChange === 0
-      ? "No change. Your portfolio is holding steady at 0%."
-      : percentageChange >= -10
-      ? "Minor loss. Stay calm and review your options."
-      : "Significant loss. Review your portfolio strategy.";
+  const summaries = [
+    { test: (pc: number) => pc > 30, message: "Excellent performance! Your investments are doing great." },
+    { test: (pc: number) => pc >= 10, message: "Solid gain. Keep monitoring your investments." },
+    { test: (pc: number) => pc > 0, message: "Modest gain. Your portfolio is growing slowly." },
+    { test: (pc: number) => pc === 0, message: "No change. Your portfolio is holding steady at 0%." },
+    { test: (pc: number) => pc >= -10, message: "Minor loss. Stay calm and review your options." },
+    { test: (pc: number) => true, message: "Significant loss. Review your portfolio strategy." },
+  ];
+
+  const performanceSummary = (summaries.find(s => s.test(percentageChange))!).message;
 
   return {
     initialInvestment,

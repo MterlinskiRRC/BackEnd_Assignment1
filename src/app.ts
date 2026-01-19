@@ -7,18 +7,24 @@ app.get('/', (req, res) => {
     res.json({
         message: 'Welcome to the Portfolio Performance API!',
         endpoints: {
-            performance: '/performance?initial=10000&current=12000'
+            performance: '/performance?initialinvestment=10000&currentvalue=12000'
         }
     });
 });
 
 app.get('/performance', (req, res) => {
-    // Use default values if query parameters are not provided
-    const initialStr = req.query.initial as string | undefined;
-    const currentStr = req.query.current as string | undefined;
+    const { initialinvestment, currentvalue } = req.query;
 
-    const initialInvestment = initialStr ? parseFloat(initialStr) : 10000;
-    const currentValue = currentStr ? parseFloat(currentStr) : 12000;
+    if (!initialinvestment || !currentvalue) {
+        return res.status(400).json({ error: 'Both initialinvestment and currentvalue query parameters are required.' });
+    }
+
+    const initialInvestment = parseFloat(initialinvestment as string);
+    const currentValue = parseFloat(currentvalue as string);
+
+    if (isNaN(initialInvestment) || isNaN(currentValue)) {
+        return res.status(400).json({ error: 'initialinvestment and currentvalue must be numbers.' });
+    }
 
     const performance = calculatePortfolioPerformance(initialInvestment, currentValue);
     res.json(performance);
