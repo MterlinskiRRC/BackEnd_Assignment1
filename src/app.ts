@@ -8,7 +8,7 @@ app.get('/health', (_req, res) => {
     res.json({
         status: 'ok',
         uptime: process.uptime(),
-        timestamp: Date.now(),
+        timestamp: new Date().toISOString(),
         version: '1.0.0'
     });
 });
