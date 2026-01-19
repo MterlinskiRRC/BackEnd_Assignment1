@@ -1,7 +1,17 @@
 import express from 'express';
 import { calculatePortfolioPerformance } from './portfolio/portfolioPerformance';
 
+
 const app = express();
+
+app.get('/health', (_req, res) => {
+    res.json({
+        status: 'ok',
+        uptime: process.uptime(),
+        timestamp: Date.now(),
+        version: '1.0.0'
+    });
+});
 
 app.get('/', (req, res) => {
     res.json({
