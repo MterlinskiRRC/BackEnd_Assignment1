@@ -1,6 +1,12 @@
 export function calculatePortfolioPerformance(): any {
-    let initialInvestment = 10000;
-    let currentValue = 12000;
+    
+interface PortfolioPerformance {
+  initialInvestment: number;
+  currentValue: number;
+  netGain: number;
+  percentageChange: string; // Formatted as a string to match common API outputs
+  isPositive: boolean;
+}
 
     const profitOrLoss = initialInvestment / currentValue;
 
