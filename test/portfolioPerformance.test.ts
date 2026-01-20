@@ -81,6 +81,7 @@ describe("calculatePortfolioPerformance", () => {
 
 
   
+  
   it("should handle zero initial investment", () => {
     
     const initialInvestment = 0;

@@ -2,6 +2,7 @@ import request from "supertest";
 import app from "../src/app";
 
 describe("API Endpoints", () => {
+  
   describe("GET /performance", () => {
     it("should return portfolio performance for valid inputs", async () => {
       const response = await request(app)
