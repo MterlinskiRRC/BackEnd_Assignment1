@@ -25,7 +25,8 @@ export function calculatePortfolioPerformance(
     { test: (pc: number) => true, message: "Significant loss. Review your portfolio strategy." },
   ];
 
-  const performanceSummary = (summaries.find(s => s.test(percentageChange))!).message;
+  const performanceSummary =
+    summaries.find(s => s.test(percentageChange))?.message ?? "Error calculating performance summary.";
 
   return {
     initialInvestment,
