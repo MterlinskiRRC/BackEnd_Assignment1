@@ -18,6 +18,7 @@ describe("API Endpoints", () => {
       });
     });
 
+
     it("should return a 400 error if a query parameter is missing", async () => {
       const response = await request(app)
         .get("/performance?initialinvestment=1000")
@@ -27,6 +28,7 @@ describe("API Endpoints", () => {
         error: "Both initialinvestment and currentvalue query parameters are required.",
       });
     });
+
 
     it("should return a 400 error for invalid query parameters", async () => {
       const response = await request(app)
@@ -39,6 +41,7 @@ describe("API Endpoints", () => {
     });
   });
 
+  
 
   describe("GET /health", () => {
     it("should return a health check status", async () => {
