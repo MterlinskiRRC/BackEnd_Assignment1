@@ -1,3 +1,9 @@
+/**
+ * @interface PortfolioPerformance
+ * This interface defines the key metrics
+ * about a portfolio's performance, including the initial investment,
+ * its current value, profit or loss, and the percentage change.
+ */
 export interface PortfolioPerformance {
   initialInvestment: number;
   currentValue: number;
@@ -6,6 +12,16 @@ export interface PortfolioPerformance {
   performanceSummary: string;
 }
 
+/**
+ * @function calculatePortfolioPerformance
+ * This function takes the initial investment and the current value of a portfolio
+ * and computes the profit or loss, the percentage change, and generates a message as defined
+ * in the example video given.
+ * 
+ * @param {number} initialInvestment - The initial amount invested in the portfolio. 
+ * @param {number} currentValue - The current value of the portfolio.
+ * @returns {PortfolioPerformance} An object containing the calculated performance metrics.
+ */
 export function calculatePortfolioPerformance(
   initialInvestment: number,
   currentValue: number
